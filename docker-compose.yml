@@ -1,4 +1,59 @@
 services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:8080"
+    volumes:
+      - /etc/localtime:/etc/localtime
+
+  emqx:
+    image: emqx:latest
+    ports:
+      - "18083:18083"
+      - "1883:1883"
+      - "8083:8083"
+      - "8883:8883"
+      - "8084:8084"
+    environment:
+      - EMQX_ALLOW_ANONYMOUS=true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:18083/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./containers/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./containers/mysql/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=cloud_sample
+    healthcheck:
+      test:
+        ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   cloud_api:
     build:
@@ -8,3 +63,17 @@ services:
       - "6789:6789"
     volumes:
       - /etc/localtime:/etc/localtime
+      - ./config:/config
+    environment:
+      - SPRING_CONFIG_LOCATION=file:/config/application.yml
+      - SPRING_DATASOURCE_DRUID_URL=jdbc:mysql://mysql:3306/cloud_sample?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_DRUID_USERNAME=root
+      - SPRING_DATASOURCE_DRUID_PASSWORD=root
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+      - MQTT_BASIC_HOST=emqx
+      - MQTT_BASIC_PORT=1883
+      - MQTT_BASIC_USERNAME=JavaServer
+      - MQTT_BASIC_PASSWORD=123456
+      - MQTT_DRC_HOST=emqx
+      - MQTT_DRC_PORT=8083
