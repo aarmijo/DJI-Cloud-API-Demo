@@ -1,0 +1,22 @@
+meta {
+  name: Get Jobs
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}{{wayline_version}}/workspaces/{{workspace_id}}/jobs?page=1&pageSize=10
+  body: none
+  auth: apikey
+}
+
+params:query {
+  page: 1
+  pageSize: 10
+}
+
+auth:apikey {
+  key: x-auth-token
+  value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ3b3Jrc3BhY2VfaWQiOiJlM2RlYTBmNS0zN2YyLTRkNzktYWU1OC00OTBhZjMyMjgwNjkiLCJzdWIiOiJDbG91ZEFwaVNhbXBsZSIsInVzZXJfdHlwZSI6IjEiLCJuYmYiOjE2Nzg4NjM0NzMsImxvZyI6IkxvZ2dlcltjb20uZGppLnNhbXBsZS5jb21tb24ubW9kZWwuQ3VzdG9tQ2xhaW1dIiwiaXNzIjoiREpJIiwiaWQiOiJhMTU1OWU3Yy04ZGQ4LTQ3ODAtYjk1Mi0xMDBjYzQ3OTdkYTIiLCJleHAiOjE3NjUyNjM0NzMsImlhdCI6MTY3ODg2MzQ3MywidXNlcm5hbWUiOiJhZG1pblBDIn0.r3ODgJtAHxrBCzDnCwTDCdUq8hLyfIUiDYzasYAIUII
+  placement: header
+}

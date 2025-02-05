@@ -1,0 +1,16 @@
+vars {
+  ip: localhost
+  port: 6789
+  base_url: http://{{ip}}:{{port}}
+  media_version: /manage/api/v1
+  map_version: /map/api/v1
+  wayline_version: /wayline/api/v1
+  storage_version: /storage/api/v1
+  control_version: /control/api/v1
+  manage_version: /manage/api/v1
+}
+vars:secret [
+  workspace_id,
+  element_group_id,
+  device_sn
+]

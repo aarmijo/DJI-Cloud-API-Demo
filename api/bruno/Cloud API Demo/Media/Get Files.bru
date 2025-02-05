@@ -1,0 +1,17 @@
+meta {
+  name: Get Files
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}{{media_version}}/files/{{workspace_id}}/files
+  body: none
+  auth: apikey
+}
+
+auth:apikey {
+  key: x-auth-token
+  value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ3b3Jrc3BhY2VfaWQiOiJlM2RlYTBmNS0zN2YyLTRkNzktYWU1OC00OTBhZjMyMjgwNjkiLCJzdWIiOiJDbG91ZEFwaVNhbXBsZSIsInVzZXJfdHlwZSI6IjEiLCJuYmYiOjE2NjI2OTYwNjMsImxvZyI6IkxvZ2dlcltjb20uZGppLnNhbXBsZS5jb21tb24ubW9kZWwuQ3VzdG9tQ2xhaW1dIiwiaXNzIjoiREpJIiwiaWQiOiJhMTU1OWU3Yy04ZGQ4LTQ3ODAtYjk1Mi0xMDBjYzQ3OTdkYTIiLCJleHAiOjE2NjI3ODI0NjMsImlhdCI6MTY2MjY5NjA2MywidXNlcm5hbWUiOiJhZG1pblBDIn0.9XEd-Zspb_a-2WhtcHxbQ4GdHbBj9wfmUbHBkZgSS0c
+  placement: header
+}

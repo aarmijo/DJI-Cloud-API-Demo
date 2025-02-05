@@ -1,0 +1,31 @@
+meta {
+  name: Create Flight Job
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}{{wayline_version}}/workspaces/{{workspace_id}}/flight-tasks
+  body: json
+  auth: apikey
+}
+
+auth:apikey {
+  key: x-auth-token
+  value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ3b3Jrc3BhY2VfaWQiOiJlM2RlYTBmNS0zN2YyLTRkNzktYWU1OC00OTBhZjMyMjgwNjkiLCJzdWIiOiJDbG91ZEFwaVNhbXBsZSIsInVzZXJfdHlwZSI6IjEiLCJuYmYiOjE2Nzg4NjM0NzMsImxvZyI6IkxvZ2dlcltjb20uZGppLnNhbXBsZS5jb21tb24ubW9kZWwuQ3VzdG9tQ2xhaW1dIiwiaXNzIjoiREpJIiwiaWQiOiJhMTU1OWU3Yy04ZGQ4LTQ3ODAtYjk1Mi0xMDBjYzQ3OTdkYTIiLCJleHAiOjE3NjUyNjM0NzMsImlhdCI6MTY3ODg2MzQ3MywidXNlcm5hbWUiOiJhZG1pblBDIn0.r3ODgJtAHxrBCzDnCwTDCdUq8hLyfIUiDYzasYAIUII
+  placement: header
+}
+
+body:json {
+  {
+      "name": "",
+      "file_id": "",
+      "dock_sn": "",
+      "wayline_type": 0,
+      "task_type": 0,
+      "task_days": [1676029468],
+      "task_periods": [[1676029468]],
+      "rth_altitude": 20,
+      "out_of_control_action": 1
+  }
+}
