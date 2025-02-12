@@ -1,0 +1,50 @@
+meta {
+  name: Upload Logs
+  type: http
+  seq: 24
+}
+
+post {
+  url: {{base_url}}{{manage_version}}/workspaces/{{workspace_id}}/devices/{{device_sn}}/logs
+  body: json
+  auth: apikey
+}
+
+auth:apikey {
+  key: x-auth-token
+  value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ3b3Jrc3BhY2VfaWQiOiJlM2RlYTBmNS0zN2YyLTRkNzktYWU1OC00OTBhZjMyMjgwNjkiLCJzdWIiOiJDbG91ZEFwaVNhbXBsZSIsInVzZXJfdHlwZSI6IjEiLCJuYmYiOjE2ODIyMzI5MDYsImxvZyI6IkxvZ2dlcltjb20uZGppLnNhbXBsZS5jb21tb24ubW9kZWwuQ3VzdG9tQ2xhaW1dIiwiaXNzIjoiREpJIiwiaWQiOiJhMTU1OWU3Yy04ZGQ4LTQ3ODAtYjk1Mi0xMDBjYzQ3OTdkYTIiLCJleHAiOjE3Njg2MzI5MDYsImlhdCI6MTY4MjIzMjkwNiwidXNlcm5hbWUiOiJhZG1pblBDIn0.ilO-3PcvWAX9r8z3AR4VAw3kVhavYjiTx_187ACBc1M
+  placement: header
+}
+
+body:json {
+  {
+      "logs_information":"",
+      "happen_time":1659326597,
+      "files":[
+          {
+              "list":[
+                  {
+                      "boot_index":1053,
+                      "end_time":1662070409,
+                      "size":1083590875,
+                      "start_time":1662066809
+                  }
+              ],
+              "device_sn":"4TADK1D",
+              "module":"3"
+          },
+          {
+              "list":[
+                  {
+                      "boot_index":222,
+                      "end_time":1661833032,
+                      "size":1782411613,
+                      "start_time":1661830103
+                  }
+              ],
+              "device_sn":"1581259",
+              "module":"0"
+          }
+      ]
+  }
+}

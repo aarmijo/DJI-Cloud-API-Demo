@@ -1,0 +1,25 @@
+meta {
+  name: Get Waylines
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}{{wayline_version}}/workspaces/{{workspace_id}}/waylines?page=1&page_size=10&order_by=update_time desc&favorited=false
+  body: none
+  auth: apikey
+}
+
+params:query {
+  page: 1
+  page_size: 10
+  order_by: update_time desc
+  favorited: false
+  ~template_type: 0,1
+}
+
+auth:apikey {
+  key: x-auth-token
+  value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ3b3Jrc3BhY2VfaWQiOiJlM2RlYTBmNS0zN2YyLTRkNzktYWU1OC00OTBhZjMyMjgwNjkiLCJzdWIiOiJDbG91ZEFwaVNhbXBsZSIsInVzZXJfdHlwZSI6IjEiLCJuYmYiOjE2ODAyNjAxNTYsImxvZyI6IkxvZ2dlcltjb20uZGppLnNhbXBsZS5jb21tb24ubW9kZWwuQ3VzdG9tQ2xhaW1dIiwiaXNzIjoiREpJIiwiaWQiOiJhMTU1OWU3Yy04ZGQ4LTQ3ODAtYjk1Mi0xMDBjYzQ3OTdkYTIiLCJleHAiOjE3NjY2NjAxNTYsImlhdCI6MTY4MDI2MDE1NiwidXNlcm5hbWUiOiJhZG1pblBDIn0._QhvfhBxxfQN7xpFqZma1rCYbBtouo2pErtm8737L_8
+  placement: header
+}

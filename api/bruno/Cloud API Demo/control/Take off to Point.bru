@@ -1,0 +1,30 @@
+meta {
+  name: Take off to Point
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}{{control_version}}/devices/{{device_sn}}/jobs/takeoff-to-point
+  body: json
+  auth: apikey
+}
+
+auth:apikey {
+  key: x-auth-token
+  value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ3b3Jrc3BhY2VfaWQiOiJlM2RlYTBmNS0zN2YyLTRkNzktYWU1OC00OTBhZjMyMjgwNjkiLCJzdWIiOiJDbG91ZEFwaVNhbXBsZSIsInVzZXJfdHlwZSI6IjEiLCJuYmYiOjE2ODIyMzI5MDYsImxvZyI6IkxvZ2dlcltjb20uZGppLnNhbXBsZS5jb21tb24ubW9kZWwuQ3VzdG9tQ2xhaW1dIiwiaXNzIjoiREpJIiwiaWQiOiJhMTU1OWU3Yy04ZGQ4LTQ3ODAtYjk1Mi0xMDBjYzQ3OTdkYTIiLCJleHAiOjE3Njg2MzI5MDYsImlhdCI6MTY4MjIzMjkwNiwidXNlcm5hbWUiOiJhZG1pblBDIn0.ilO-3PcvWAX9r8z3AR4VAw3kVhavYjiTx_187ACBc1M
+  placement: header
+}
+
+body:json {
+  {
+      "target_latitude": 22.579,
+      "target_longitude": 113.9392,
+      "target_height": 20,
+      "security_takeoff_height": 20,
+      "rth_altitude": 20,
+      "rc_lost_action": 0,
+      "exit_wayline_when_rc_lost": 0,
+      "max_speed": 12
+  }
+}
